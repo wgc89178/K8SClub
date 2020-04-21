@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+  
+  db:
+    image: mysql:5.7
+    volumes:
+    - ./db/data/:/var/lib/mysql/
+    env_file: 
+    - ./db/env.list
+    networks:
+      webnet:
+        aliases:
+        - "mysql"
+    expose:
+    - "3306"
+
+  wp:
+    image: wordpress:5-php7.2
+    env_file: 
+    - ./wp/env.list
+    networks:
+      webnet:
+        aliases:
+        - "wordpress"
+    expose:
+    - "80"
+    ports:
+    - "8080:80"
+    depends_on:
+    - db
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+    - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      webnet:
+        aliases:
+        - "www"
+    expose:
+    - "80"
+    ports:
+    - "80:80"
+    depends_on:
+    - db
+    - wp
+
+networks:
+  webnet: {}
