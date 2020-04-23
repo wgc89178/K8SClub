@@ -1,0 +1,79 @@
+# Author: "MageEdu <mage@magedu.com>"
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-conf
+  namespace: default
+data:
+  default.conf: |
+    server {
+        listen       80;
+        server_name  localhost;
+        location / {
+            root /usr/share/nginx/html;
+            index  index.php index.html index.htm;
+        }
+        location /stub_status {
+            stub_status on;
+            access_log off;
+            allow 127.0.0.1/8;
+            deny all;
+        }
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   /usr/share/nginx/html;
+        }
+    }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-with-exporter
+  name: nginx-with-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-with-exporter
+  template:
+    metadata:
+      labels:
+        app: nginx-with-exporter
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9113"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+      - image: nginx:alpine
+        name: nginx-with-exporter
+        volumeMounts:
+        - name: ngxconfs
+          mountPath: /etc/nginx/conf.d/
+          readOnly: true
+      - image: nginx/nginx-prometheus-exporter:latest
+        name: exporter
+        args: ["-nginx.scrape-uri=http://127.0.0.1/stub_status"]
+      volumes:
+      - name: ngxconfs
+        configMap:
+          name: nginx-conf
+          optional: false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginx-with-exporter
+  name: nginx-svc
+  namespace: default
+spec:
+  ports:
+  - name: "80"
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx-with-exporter
+---
