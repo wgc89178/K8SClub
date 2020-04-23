@@ -55,4 +55,4 @@
 
 若有帮助，欢迎分享[马哥教育](http://www.magedu.com/)，[K8SClub 社区](https://github.com/K8SClub)及[《Kubernetes进阶实战》](https://union-click.jd.com/jdc?e=&p=AyIGZRhaHQsbBVUcXhMyEgRQHV0VAxY3EUQDS10iXhBeGlcJDBkNXg9JHU4YDk5ER1xOGRNLGEEcVV8BXURFUFdfC0RVU1JRUy1OVxUBFwFTG1oRMkFfC1MGZn5uZBUYMH5Jc3cIclMQHFQLWStaJQITBlYfUhYBFgRlK1sSMkRpVRpaFAMTAlQfWCUDIgdREl0RBBAOUB1YEwMiAFUSa11cVkwNdQxWWkZYACtrJQEiN2UbaxYyUGlVGlsQVxYDVEtSFQQXAFNJCxYHEAdcTAsdBhFTBRMLEDIQBlQfUg%3D%3D) 给你的朋友共同学习。
 
-## 请关注社区，不要勿走远，未完待续。。。
+## 请关注社区，切勿走远，未完待续。。。
