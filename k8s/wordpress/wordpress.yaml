@@ -1,0 +1,46 @@
+# Author: "MageEdu <mage@magedu.com>"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: wordpress
+  name: wordpress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      containers:
+      - image: wordpress:5-php7.2
+        name: wordpress
+        env:
+        - name: WORDPRESS_DB_NAME
+          value: wpdb
+        - name: WORDPRESS_DB_USER
+          value: wpuser
+        - name: WORDPRESS_DB_PASSWORD
+          value: wppass@magedu.com
+        - name: WORDPRESS_DB_HOST
+          value: "wpdb.default.svc.cluster.local."
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: wordpress
+  name: wordpress
+  namespace: default
+spec:
+  ports:
+  - name: "80"
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: wordpress
+  type: ClusterIP
