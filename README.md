@@ -6,7 +6,7 @@
 * 本项目仅包含: _**实践代码**_ ，课程在[腾讯课堂](https://ke.qq.com/course/2145808?saleToken=2095963&from=pclink)(有录播)，索取课件/在线学习/咨询/加入社区 请扫码添加顾问。
 
 |添加顾问<br/> _索取课件_ |钉钉扫码<br/>加K8sClub|微信/QQ<br/>扫码学习|马哥教育<br/>官网|
-|---|---|---|---|---|
+|---|---|---|---|
 |![alt "添加顾问索取课件"](.images/handou.jpg "添加顾问索取课件")|![alt "也可钉钉搜索 K8SClub 加群"](.images/DingTalk.png "扫码加入钉钉群")|!["微信/QQ扫码在线学习 https://ke.qq.com/course/2145808?saleToken=2095963&from=pclink"](.images/docker+k8s+3days.ke.qq.com.jpg "微信QQ扫码在线学习")|<a href="http://www.magedu.com/" title="马哥教育"><img src="http://www.magedu.com/wp-content/uploads/2018/12/2018122312035677.png?s=container-basics" width = "120" alt="马哥教育" /></a>|
 
 ## 课前提示
